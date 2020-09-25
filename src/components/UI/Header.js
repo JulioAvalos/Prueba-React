@@ -105,7 +105,7 @@ const Header = () => {
                     <Typography className={classes.title} variant="h6" noWrap>
                         Poke API - React
                     </Typography>
-                    <div className={classes.search}>
+                    {/* <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <FontAwesomeIcon icon={faSearch} />
                         </div>
@@ -117,7 +117,7 @@ const Header = () => {
                             }}
                             inputProps={{ 'aria-label': 'search' }}
                         />
-                    </div>
+                    </div> */}
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbarMargin} />
