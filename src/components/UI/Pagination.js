@@ -17,14 +17,14 @@ class Pagination extends Component {
             >
                 {this.props.prevPage && 
                     <Grid item> 
-                        <Button variant="contained" onClick={() => this.props.onGoToPrevPage(this.props.prevPage)}>
+                        <Button color="secondary" variant="contained" onClick={() => this.props.onGoToPrevPage(this.props.prevPage)}>
                             Anterior
                         </Button>
                     </Grid>
                 }
                 {this.props.nextPage && 
                     <Grid item> 
-                        <Button variant="contained" onClick={()=> this.props.onGoToNextPage(this.props.nextPage)}>
+                        <Button color="secondary" variant="contained" onClick={()=> this.props.onGoToNextPage(this.props.nextPage)}>
                             Siguiente
                         </Button> 
                     </Grid>
@@ -43,8 +43,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onGoToPrevPage: (page) => dispatch(actionCreators.setNewPagination(page)),
-        onGoToNextPage: (page) => dispatch(actionCreators.setNewPagination(page)),
+        onGoToPrevPage: (page) => dispatch(actionCreators.goToPrevPage(page)),
+        onGoToNextPage: (page) => dispatch(actionCreators.goToNextPage(page)),
         onInitPokemons: () => dispatch(actionCreators.initPokemons())
     };
 };

@@ -1,5 +1,8 @@
 export {
     goToPrevPage,
     goToNextPage,
-    initPokemons
+    initPokemons,
+    fetchPokemonDetails
 } from './pokemons';
+
+export { } from './favorites';
