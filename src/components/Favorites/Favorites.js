@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Favorites = () => {
-    return (
-        <React.Fragment>
-            <div>Favorites</div>
-        </React.Fragment>
-    );
+class Favorites extends Component {
+
+    render () {
+        return (
+            <div>
+                {this.props.favorites.map(pokemon => pokemon)}
+            </div>
+        );
+    }
+    
 }
 
-export default Favorites;
+const mapStateToProps = state => {
+    return {
+        favorites: state.fav.pokemons
+    };
+};
+
+export default connect(mapStateToProps)(Favorites);
