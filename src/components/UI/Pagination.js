@@ -1,33 +1,53 @@
-import React from 'react';
+import React, { Component }  from 'react';
+import { connect } from 'react-redux';
+
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import * as actionCreators from '../../store/actions/pokemons';
 
-const Pagination = (props) => {
-    return (
-        <Grid 
-            container 
-            spacing={3}
-            direction="row"
-            justify="center"
-            alignItems="center"
-        >
-            {props.goToPrevPage && 
-                <Grid item> 
-                    <Button variant="contained" onClick={props.goToPrevPage}>
-                        Anterior
-                    </Button>
-                </Grid>
-            }
-            {props.goToNextPage && 
-                <Grid item> 
-                    <Button variant="contained" onClick={props.goToNextPage}>
-                        Siguiente
-                    </Button> 
-                </Grid>
-            }
-        </Grid>
-    );
+class Pagination extends Component {
+    render () {
+        return (
+            <Grid 
+                container 
+                spacing={3}
+                direction="row"
+                justify="center"
+                alignItems="center"
+            >
+                {this.props.prevPage && 
+                    <Grid item> 
+                        <Button variant="contained" onClick={() => this.props.onGoToPrevPage(this.props.prevPage)}>
+                            Anterior
+                        </Button>
+                    </Grid>
+                }
+                {this.props.nextPage && 
+                    <Grid item> 
+                        <Button variant="contained" onClick={()=> this.props.onGoToNextPage(this.props.nextPage)}>
+                            Siguiente
+                        </Button> 
+                    </Grid>
+                }
+            </Grid>
+        ); 
+    }
 }
 
-export default Pagination;
+const mapStateToProps = state => {
+    return {
+        prevPage: state.poke.prevPageUrl,
+        nextPage: state.poke.nextPageUrl
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onGoToPrevPage: (page) => dispatch(actionCreators.setNewPagination(page)),
+        onGoToNextPage: (page) => dispatch(actionCreators.setNewPagination(page)),
+        onInitPokemons: () => dispatch(actionCreators.initPokemons())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
  

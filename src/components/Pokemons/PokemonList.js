@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -21,6 +21,7 @@ const PokemonList = props => {
     return (
         <Grid container spacing={3}>
             {props.pokemons.map(pokemon => {
+                // console.log(pokemon);
                 return (
                     <Grid item xs={3} key={pokemon.name}>
                         <Paper className={classes.paper}>
@@ -28,6 +29,7 @@ const PokemonList = props => {
                             <Grid item>
                                 <img
                                     src={pokemon.img}
+                                    alt={pokemon.name}
                                     style={{ maxWidth: '45px' }}
                                 />
                             </Grid>
