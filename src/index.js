@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 import App from './App';
+import Header from './components/UI/Header';
 import favoritesReducer from './store/reducers/favorites';
 import pokemonReducer from './store/reducers/pokemons';
 
@@ -23,6 +24,7 @@ const store = createStore(rootReducer, composeEnhancers(
 const app = (
     <Provider store={store}>
         <BrowserRouter>
+            <Header />
             <App /> 
         </BrowserRouter>
     </Provider>

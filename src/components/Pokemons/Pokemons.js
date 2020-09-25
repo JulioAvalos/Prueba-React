@@ -24,7 +24,7 @@ class Pokemons extends Component {
     render () {
         return (
             <React.Fragment>
-                <Pagination />
+                <Pagination/>
                 <PokemonList 
                     pokemons={this.props.pokemons} 
                     onSelect={this.props.onSelectPokemon}

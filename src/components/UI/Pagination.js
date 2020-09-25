@@ -1,4 +1,5 @@
 import React, { Component }  from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
@@ -20,7 +21,13 @@ class Pagination extends Component {
             >
                 {this.props.prevPage && 
                     <Grid item> 
-                        <Button color="secondary" variant="contained" onClick={() => this.props.onGoToPrevPage(this.props.prevPage)}>
+                        <Button 
+                            color="secondary" 
+                            to={"/?"+this.props.prevPage.split("?")[1]}
+                            component={Link}
+                            variant="contained" 
+                            onClick={() => this.props.onGoToPrevPage(this.props.prevPage)}
+                        >
                             <FontAwesomeIcon icon={faChevronLeft} style={{marginRight: '1em'}}/>
                             Anterior
                         </Button>
@@ -28,7 +35,13 @@ class Pagination extends Component {
                 }
                 {this.props.nextPage && 
                     <Grid item> 
-                        <Button color="secondary" variant="contained" onClick={()=> this.props.onGoToNextPage(this.props.nextPage)}>
+                        <Button 
+                            color="secondary" 
+                            to={"/?"+this.props.nextPage.split("?")[1]}
+                            component={Link}
+                            variant="contained" 
+                            onClick={()=> this.props.onGoToNextPage(this.props.nextPage)}
+                        >
                             Siguiente
                             <FontAwesomeIcon icon={faChevronRight}  style={{marginLeft: '1em'}}/>
                         </Button> 

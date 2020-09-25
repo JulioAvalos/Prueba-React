@@ -22,7 +22,7 @@ const useStyles = theme => ({
         flexGrow: 1,
     },
     paper: {
-        marginTop: '2em',
+        // marginTop: '2em',
         padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
@@ -143,24 +143,26 @@ class Pokemon extends Component {
                             />
                         }
                         <Grid item>
-                            <Grid 
-                                container   
-                                direction="row"
-                                justify="space-between"
-                                alignItems="center"
-                            >
-                                <Grid item>
-                                    <Button color="secondary" onClick={() => this.props.history.goBack()}>
-                                        <FontAwesomeIcon icon={faChevronLeft} style={{marginRight: '1em'}} />
-                                            Volver
-                                    </Button>
+                            {this.props.pokemon.name && 
+                                 <Grid 
+                                    container   
+                                    direction="row"
+                                    justify="space-between"
+                                    alignItems="center"
+                                >
+                                    <Grid item>
+                                        <Button color="secondary" onClick={() => this.props.history.goBack()}>
+                                            <FontAwesomeIcon icon={faChevronLeft} style={{marginRight: '1em'}} />
+                                                Volver
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton style={{color: '#efcf5b'}}>
+                                            <FontAwesomeIcon icon={faStar}/>
+                                        </IconButton>
+                                    </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <IconButton style={{color: '#efcf5b'}}>
-                                        <FontAwesomeIcon icon={faStar}/>
-                                    </IconButton>
-                                </Grid>
-                            </Grid>
+                            }
                             <Typography variant="h3">
                                 {this.props.pokemon.name}
                             </Typography>
