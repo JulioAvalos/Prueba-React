@@ -10,15 +10,19 @@ import Chip from '@material-ui/core/Chip';
 import LinearProgress  from '@material-ui/core/LinearProgress';
 import CircularProgress  from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import * as actionCreators from '../../store/actions/pokemons';
-import Button from '@material-ui/core/Button';
+import { ButtonBase } from '@material-ui/core';
 
 const useStyles = theme => ({
     root: {
         flexGrow: 1,
     },
     paper: {
+        marginTop: '2em',
         padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
@@ -129,18 +133,33 @@ class Pokemon extends Component {
             >
                 {this.props.pokemon ? (
                     <Paper className={classes.paper}>
-                        {this.props.pokemon.name && 
+                        {!this.props.pokemon.name && 
                             <CircularProgress 
                                 color="secondary" 
                                 style={{
-                                    width: '75px', 
-                                    height: '75px'
+                                    width: '150px', 
+                                    height: '150px'
                                 }}
                             />
                         }
                         <Grid item>
-                            <Grid item>
-                                Favorito jeje
+                            <Grid 
+                                container   
+                                direction="row"
+                                justify="space-between"
+                                alignItems="center"
+                            >
+                                <Grid item>
+                                    <Button color="secondary" onClick={() => this.props.history.goBack()}>
+                                        <FontAwesomeIcon icon={faChevronLeft} style={{marginRight: '1em'}} />
+                                            Volver
+                                    </Button>
+                                </Grid>
+                                <Grid item>
+                                    <IconButton style={{color: '#efcf5b'}}>
+                                        <FontAwesomeIcon icon={faStar}/>
+                                    </IconButton>
+                                </Grid>
                             </Grid>
                             <Typography variant="h3">
                                 {this.props.pokemon.name}

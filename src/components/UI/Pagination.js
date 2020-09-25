@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import * as actionCreators from '../../store/actions/pokemons';
 
 class Pagination extends Component {
@@ -18,6 +21,7 @@ class Pagination extends Component {
                 {this.props.prevPage && 
                     <Grid item> 
                         <Button color="secondary" variant="contained" onClick={() => this.props.onGoToPrevPage(this.props.prevPage)}>
+                            <FontAwesomeIcon icon={faChevronLeft} style={{marginRight: '1em'}}/>
                             Anterior
                         </Button>
                     </Grid>
@@ -26,6 +30,7 @@ class Pagination extends Component {
                     <Grid item> 
                         <Button color="secondary" variant="contained" onClick={()=> this.props.onGoToNextPage(this.props.nextPage)}>
                             Siguiente
+                            <FontAwesomeIcon icon={faChevronRight}  style={{marginLeft: '1em'}}/>
                         </Button> 
                     </Grid>
                 }
