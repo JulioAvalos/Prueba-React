@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    title: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-            display: 'block',
-        },
-    },
+    // title: {
+    //     display: 'none',
+    //     [theme.breakpoints.up('sm')]: {
+    //         display: 'block',
+    //     },
+    // },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -91,7 +91,7 @@ const Header = () => {
 
     return (
         <React.Fragment>
-            <AppBar position="fixed" color="primary">
+            <AppBar position="fixed" color="secondary">
                 <Toolbar>
                     <IconButton
                         edge="start"
@@ -102,7 +102,7 @@ const Header = () => {
                     >
                         <FontAwesomeIcon icon={faBars} />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
+                    <Typography variant="h6" noWrap>
                         Poke API - React
                     </Typography>
                     {/* <div className={classes.search}>

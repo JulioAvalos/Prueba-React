@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import PokemonList from './PokemonList';
 import Pagination from '../UI/Pagination';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import * as actionCreators from '../../store/actions/pokemons';
 
 class Pokemons extends Component {
@@ -51,6 +54,7 @@ class Pokemons extends Component {
                     <Grid item>
                         <TextField 
                             InputProps={{
+                                startAdornment: <InputAdornment position="start"><FontAwesomeIcon icon={faSearch}/></InputAdornment>,
                                 placeholder: 'Buscar pokemon...'
                             }}
                             onChange={(event) => this.handleSearch(event)}
