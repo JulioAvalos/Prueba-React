@@ -11,12 +11,12 @@ import LinearProgress  from '@material-ui/core/LinearProgress';
 import CircularProgress  from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import * as actionCreators from '../../store/actions/pokemons';
-import { ButtonBase } from '@material-ui/core';
-
+  
 const useStyles = theme => ({
     root: {
         flexGrow: 1,
@@ -107,7 +107,8 @@ const useStyles = theme => ({
 class Pokemon extends Component {
 
     state = {
-        loadingImage: false
+        loadingImage: false,
+        open: false
     };
 
     componentDidMount() {
@@ -120,6 +121,10 @@ class Pokemon extends Component {
     handleImageLoad = () => {
         console.log('cargo la imagen');
         this.setState({loadingImage: false});
+    }
+
+    handleClose = () => {
+        this.setState({open: false});
     }
 
     render() {
@@ -157,7 +162,7 @@ class Pokemon extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item>
-                                        <IconButton style={{color: '#efcf5b'}}>
+                                        <IconButton style={{color: '#efcf5b'}} onClick={()=> this.setState({open: true})}>
                                             <FontAwesomeIcon icon={faStar}/>
                                         </IconButton>
                                     </Grid>
@@ -250,6 +255,22 @@ class Pokemon extends Component {
                         </Grid>
                     </Paper>
                 )}
+                <Snackbar 
+                    open={this.state.open} 
+                    ContentProps={{
+                        style: {
+                            backgroundColor: '#efcf5b'
+                        }
+                    }}
+                    anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                    message="Se ha agregado a favoritos!"
+                    onClose={() => this.handleClose()}
+                    action={
+                        <Button onClick={()=>this.handleClose()} style={{color: '#FFF'}}>
+                            Cerrar
+                        </Button>
+                    }
+                />
             </Grid>
         );
     }
