@@ -1,8 +1,4 @@
-import {
-    takeEvery,
-    all,
-    takeLatest
-} from 'redux-saga/effects';
+import { takeEvery, takeLatest } from 'redux-saga/effects';
 
 import * as actionTypes from '../actions/actionTypes';
 
@@ -20,11 +16,9 @@ import {
 } from './pokemons';
 
 export function* watchFavorites() {
-    yield all([
-        takeEvery(actionTypes.ADD_INIT_FAVORITE_POKEMON, addFavoritePokemonSaga),
-        takeEvery(actionTypes.FETCH_INIT_FAV_POKEMONS, fetchFavoritePokemonsSaga),
-        takeEvery(actionTypes.INIT_REMOVE_FAVORITE_POKEMON, removeFavoritePokemonsSaga)
-    ]);
+    yield takeEvery(actionTypes.ADD_INIT_FAVORITE_POKEMON, addFavoritePokemonSaga);
+    yield takeEvery(actionTypes.FETCH_INIT_FAV_POKEMONS, fetchFavoritePokemonsSaga);
+    yield takeEvery(actionTypes.INIT_REMOVE_FAVORITE_POKEMON, removeFavoritePokemonsSaga);
 }
 
 export function* watchPokemons() {

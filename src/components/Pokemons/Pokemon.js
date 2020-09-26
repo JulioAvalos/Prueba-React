@@ -11,6 +11,7 @@ import CircularProgress  from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import Avatar from '@material-ui/core/Avatar';
 
 import Error from '../UI/Error';
 
@@ -28,6 +29,10 @@ const useStyles = theme => ({
         padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+    },
+    large: {
+        width: theme.spacing(14),
+        height: theme.spacing(14)
     },
     chip: {
         marginRight: '2em',
@@ -176,10 +181,19 @@ class Pokemon extends Component {
                             <Typography variant="h3">
                                 {this.props.pokemon.name}
                             </Typography>
+                            <Grid container justify="center" alignItems="center">
+                                <Grid item>
                                 {this.state.loadingImage 
                                     ? <CircularProgress /> : 
-                                    <img onLoad={() => this.handleImageLoad()} alt={this.props.pokemon.name} src={this.props.pokemon.img} />
+                                    <Avatar 
+                                        className={classes.large}
+                                        alt={this.props.pokemon.name}
+                                        src={this.props.pokemon.img} 
+                                    />
                                 }
+                                </Grid>
+                            </Grid>
+                                
                             <Typography variant="body1">
                                {this.props.pokemon.height ? 'Height: ' + this.props.pokemon.height + " m" : null }
                             </Typography>
