@@ -1,7 +1,7 @@
 
 ## Pokemon Web App - React.js (Prueba Front-end Developer) 💻
 
-[Vista previa](https://toma-pedido-cae71.web.app/)
+**🖥Demo de la aplicacion: [Vista previa](https://toma-pedido-cae71.web.app/) **
 
 Se hizo uso del servicio web [PokeAPI](https://pokeapi.co/)
 
