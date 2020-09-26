@@ -12,6 +12,9 @@ import CircularProgress  from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+
+import Error from '../UI/Error';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -179,13 +182,13 @@ class Pokemon extends Component {
                             </Typography>
                                 {this.state.loadingImage 
                                     ? <CircularProgress /> : 
-                                    <img onLoad={() => this.handleImageLoad()} src={this.props.pokemon.img} />
+                                    <img onLoad={() => this.handleImageLoad()} alt={this.props.pokemon.name} src={this.props.pokemon.img} />
                                 }
                             <Typography variant="body1">
-                               {this.props.pokemon.height ? 'Height: ' + this.props.pokemon.height: null }
+                               {this.props.pokemon.height ? 'Height: ' + this.props.pokemon.height + " m" : null }
                             </Typography>
                             <Typography variant="body1">
-                              {this.props.pokemon.weight ? 'Weight:' + this.props.pokemon.weight : null}
+                              {this.props.pokemon.weight ? 'Weight: ' + this.props.pokemon.weight + " kg" : null}
                             </Typography>
                             <Grid 
                                 container
@@ -240,26 +243,7 @@ class Pokemon extends Component {
                     </Paper>
 
                 ) : (
-                    <Paper className={classes.paper} style={{marginTop: '3em'}}>
-                        <Grid 
-                            container
-                            direction="column"
-                            justify="center"
-                            alignItems="center"
-                        >
-                            <Grid item>
-                                <Typography variant="h3">
-                                    Error - 404!
-                                </Typography>
-                                <Typography variant="h5">
-                                    No se ha encontrado el pokemon!
-                                </Typography>
-                            </Grid>
-                            <Grid item style={{marginTop: '2em'}}>
-                                <Button variant="contained" color="secondary" to="/" component={Link}>Volver</Button>
-                            </Grid>
-                        </Grid>
-                    </Paper>
+                   <Error />
                 )}
                 <Snackbar 
                     open={this.state.open} 

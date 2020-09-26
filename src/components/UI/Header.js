@@ -4,13 +4,12 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
-import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSearch, faMobileAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMobileAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { ListItem } from '@material-ui/core';
 
@@ -21,12 +20,6 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    // title: {
-    //     display: 'none',
-    //     [theme.breakpoints.up('sm')]: {
-    //         display: 'block',
-    //     },
-    // },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -105,19 +98,6 @@ const Header = () => {
                     <Typography variant="h6" noWrap>
                         Poke API - React
                     </Typography>
-                    {/* <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <FontAwesomeIcon icon={faSearch} />
-                        </div>
-                        <InputBase
-                            placeholder="Buscar pokemon..."
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div> */}
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbarMargin} />
