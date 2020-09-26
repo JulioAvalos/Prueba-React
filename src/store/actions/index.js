@@ -1,13 +1,21 @@
 export {
     goToPrevPage,
+    setPrevPageUrl,
     goToNextPage,
+    setNextPageUrl,
     initPokemons,
+    setPokemons,
     onSelectPokemon,
-    fetchPokemonDetails
+    fetchPokemonsFailed,
+    fetchPokemonDetails,
+    setPokemonDetails
 } from './pokemons';
 
 export {
     onFetchFavoritePokemons,
     onAddFavoritePokemon,
-    onRemoveFavoritePokemon
+    addFavorite,
+    setFavoritePokemons,
+    onRemoveFavoritePokemon,
+    removeFavorite
 } from './favorites';

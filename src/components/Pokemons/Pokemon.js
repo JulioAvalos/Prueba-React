@@ -114,14 +114,11 @@ class Pokemon extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
         const index = this.props.match.params.id;
-        console.log('indice? ', index);
         this.props.onFetchDetails(index);
     }
 
     handleImageLoad = () => {
-        console.log('cargo la imagen');
         this.setState({loadingImage: false});
     }
 

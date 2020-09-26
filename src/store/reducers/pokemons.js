@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SET_PREV_PAGE: return setPage(state, action);
         case actionTypes.SET_NEXT_PAGE: return setPage(state, action);
         case actionTypes.SELECTED: return pokemonSelected(state, action);
-        case actionTypes.FETCH_INIT_POKEMONS: return setPage(state, action);
+        case actionTypes.FETCH_POKEMONS: return setPage(state, action);
         case actionTypes.FETCH_POKEMONS_FAILED: return fetchFailed(state, action);
         case actionTypes.FETCH_POKEMON_DETAILS: return fetchPokemonDetails(state, action);
         default: return state;

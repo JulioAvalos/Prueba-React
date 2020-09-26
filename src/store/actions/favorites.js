@@ -7,47 +7,43 @@ export const fetchFavorites = (favoritePokemons) => {
     };
 };
 
+export const setFavoritePokemons = (favoritePokemons) => {
+    return {
+        type: actionTypes.FETCH_FAVORITE_POKEMONS,
+        pokemons: favoritePokemons
+    }
+}
+
 export const onFetchFavoritePokemons = () => {
-    return dispatch => {
-        const favoritePokemons = localStorage.getItem('favorites') 
-                ? JSON.parse(localStorage.getItem('favorites')) 
-                : [];
-        dispatch(fetchFavorites(favoritePokemons));
+    return  {
+       type: actionTypes.FETCH_INIT_FAV_POKEMONS
     };
 };
 
 export const onAddFavoritePokemon = (pokemon) => {
-    let favorites = JSON.parse(localStorage.getItem('favorites'));
+    return {
+        type: actionTypes.ADD_INIT_FAVORITE_POKEMON,
+        pokemon: pokemon
+    };
+};
 
-    if(!favorites) {
-        const favoritesPokemons = [];
-        favoritesPokemons.push(pokemon)
-        console.log(favoritesPokemons);
-        localStorage.setItem('favorites', JSON.stringify(favoritesPokemons));
-        favorites = favoritesPokemons;
-    } else {
-        const addedPokemon = favorites.filter(poke => poke.name === pokemon.name);
-        if(addedPokemon.length === 0) 
-        favorites.push(pokemon);
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
-
+export const addFavorite = (pokemons) => {
     return {
         type: actionTypes.ADD_FAVORITE_POKEMON,
-        pokemons: favorites
-    };
-};
+        pokemons: pokemons
+    }
+}
 
 export const onRemoveFavoritePokemon = (pokemon) => {
-    let favorites = JSON.parse(localStorage.getItem('favorites'));
+    return {
+        type: actionTypes.INIT_REMOVE_FAVORITE_POKEMON,
+        pokemon: pokemon
+    };
+};
 
-    const newFavorites = favorites.filter(poke => poke.name !== pokemon.name);
-    console.log('new fav', newFavorites)
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
-
+export const removeFavorite = (favorites) => {
     return {
         type: actionTypes.REMOVE_FAVORITE_POKEMON,
-        pokemons: newFavorites
+        pokemons: favorites
     };
-
-};
+}

@@ -46,9 +46,9 @@ const FavoritesList = (props) => {
                 >
                     <Paper className={classes.paper}>
                         <Grid container justify="flex-end">
-                            <IconButton color="secondary" onClick={()=>{
-                                    props.onRemovePokemon(pokemon);
-                                    setOpen(false);
+                            <IconButton color="secondary" onClick={() => {
+                                    props.onRemove(pokemon);
+                                    setOpen(true);
                                 }}
                             >
                                 <FontAwesomeIcon icon={faTimes} />
