@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
     large: {
-        width: theme.spacing(8),
-        height: theme.spacing(8)
+        width: theme.spacing(12),
+        height: theme.spacing(12)
     }
 }));
 
@@ -46,13 +46,14 @@ const FavoritesList = (props) => {
                 >
                     <Paper className={classes.paper}>
                         <Grid container justify="flex-end">
-                            <IconButton color="secondary" onClick={() => {
+                            <Button variant="outlined" color="secondary" onClick={() => {
                                     props.onRemove(pokemon);
                                     setOpen(true);
                                 }}
                             >
-                                <FontAwesomeIcon icon={faTimes} />
-                            </IconButton>
+                                <FontAwesomeIcon icon={faTimes} style={{marginRight: '0.5em'}} />
+                                Remover
+                            </Button>
                         </Grid>
                         <Grid container justify="center" alignItems="center"> 
                             <Grid item>
@@ -64,7 +65,7 @@ const FavoritesList = (props) => {
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <Typography variant="body1">{pokemon.name}</Typography>
+                            <Typography variant="h6">{pokemon.name}</Typography>
                         </Grid>
                     </Paper>
                 </Grid>

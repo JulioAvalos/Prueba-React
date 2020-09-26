@@ -166,15 +166,16 @@ class Pokemon extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item>
-                                        <IconButton 
+                                        <Button 
                                             style={{color: '#efcf5b'}}
                                             onClick={ ()=> {
                                                 this.setState({open: true})
                                                 this.props.onAddPokemon(this.props.pokemon)
                                             }}
                                         >
-                                            <FontAwesomeIcon icon={faStar}/>
-                                        </IconButton>
+                                            <FontAwesomeIcon icon={faStar} style={{marginRight: '0.2em'}}/> 
+                                            Agregar como favorito
+                                        </Button>
                                     </Grid>
                                 </Grid>
                             }

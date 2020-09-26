@@ -1,4 +1,4 @@
 
-## Pokemon Web App - React.js (Technical Test for Front-end Position)
+## Pokemon Web App - React.js (Prueba Front-end Developer)
 
-React Application using the [PokeAPI](https://pokeapi.co/).
+React Application using the [PokeAPI](https://pokeapi.co/)

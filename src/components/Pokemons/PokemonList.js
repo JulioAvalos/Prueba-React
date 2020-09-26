@@ -5,6 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,13 +51,19 @@ const PokemonList = props => {
                                     / >
                                 </Grid>
                             </Grid>
-                            <Grid item>
+                            <Grid>
+                                <Typography variant="h6">{pokemon.name}</Typography>
+                            </Grid>
+                            <Grid item style={{marginTop: '0.2em'}}>
                                 <Button
+                                    color="secondary"
+                                    variant="outlined"
                                     component={Link}
                                     to={"/detail/" + pokemon.id}
                                     onClick={() => props.onSelect(pokemon.id)}
                                 >
-                                    {pokemon.name}
+                                    Ver Detalle 
+                                    <FontAwesomeIcon icon={faSearch} style={{marginLeft: '0.2em'}}/>
                                 </Button>
                             </Grid>
                         </Paper>
