@@ -29,6 +29,7 @@ const PokemonList = props => {
             spacing={3}
         >
             {props.pokemons.map(pokemon => {
+                // console.log(pokemon);
                 return (
                     <Grid 
                         item 

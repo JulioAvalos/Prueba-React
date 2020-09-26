@@ -1,16 +1,80 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import Avatar from '@material-ui/core/Avatar';
+
+import * as actionCreators from '../../store/actions/';
+
+const useStyles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(3),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+    large: {
+        width: theme.spacing(8),
+        height: theme.spacing(8)
+    },
+});
 
 class Favorites extends Component {
 
-    render () {
+    render() {
+        const { classes } = this.props;
+
         return (
-            <div>
-                {this.props.favorites.map(pokemon => pokemon)}
-            </div>
+            <Grid
+                container 
+                spacing={3}
+            >
+                {this.props.favorites.map(pokemon => (
+                    <Grid 
+                        item 
+                        lg={2}
+                        md={3}
+                        sm={4}
+                        xs={6}
+                        key={pokemon.name}
+                    >
+                        <Paper className={classes.paper}>
+                            <Grid container justify="flex-end">
+                                <IconButton color="secondary" onClick={()=> this.props.onRemovePokemon(pokemon)}>
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </IconButton>
+                            </Grid>
+                            <Grid container justify="center" alignItems="center"> 
+                                <Grid item>
+                                    <Avatar 
+                                        className={classes.large}
+                                        src={pokemon.img}
+                                        alt={pokemon.name}
+                                    / >
+                                </Grid>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="body1">{pokemon.name}</Typography>
+                            </Grid>
+                        </Paper>
+                    </Grid>
+                ))}
+            </Grid>
+
         );
     }
-    
+
 }
 
 const mapStateToProps = state => {
@@ -19,4 +83,12 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Favorites);
+const mapDispatchToProps = dispatch => {
+    return {
+        onRemovePokemon: (pokemon) => dispatch(actionCreators.onRemoveFavoritePokemon(pokemon)),
+    };
+};
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Favorites));

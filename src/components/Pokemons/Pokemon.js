@@ -15,7 +15,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faStar } from "@fortawesome/free-solid-svg-icons";
 
-import * as actionCreators from '../../store/actions/pokemons';
+import * as actionCreators from '../../store/actions/';
   
 const useStyles = theme => ({
     root: {
@@ -162,7 +162,13 @@ class Pokemon extends Component {
                                         </Button>
                                     </Grid>
                                     <Grid item>
-                                        <IconButton style={{color: '#efcf5b'}} onClick={()=> this.setState({open: true})}>
+                                        <IconButton 
+                                            style={{color: '#efcf5b'}}
+                                            onClick={ ()=> {
+                                                this.setState({open: true})
+                                                this.props.onAddPokemon(this.props.pokemon)
+                                            }}
+                                        >
                                             <FontAwesomeIcon icon={faStar}/>
                                         </IconButton>
                                     </Grid>
@@ -257,6 +263,7 @@ class Pokemon extends Component {
                 )}
                 <Snackbar 
                     open={this.state.open} 
+                    autoHideDuration={4000}
                     ContentProps={{
                         style: {
                             backgroundColor: '#efcf5b'
@@ -284,7 +291,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchDetails: (index) => dispatch(actionCreators.fetchPokemonDetails(index))
+        onFetchDetails: (index) => dispatch(actionCreators.fetchPokemonDetails(index)),
+        onAddPokemon: (pokemon) => dispatch(actionCreators.onAddFavoritePokemon(pokemon))
     };
 };
 

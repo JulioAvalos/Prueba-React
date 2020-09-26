@@ -1,23 +1,28 @@
 import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../../shared/utility';
 
 const initialState = {
-    pokemons: [1,2,3,4]
+    pokemons: localStorage.getItem('favorites') 
+        ? JSON.parse(localStorage.getItem('favorites')) : []
+}
+
+const addPokemon = (state, action) => {
+    return updateObject(state, {
+        pokemons: action.pokemons
+    });
+}
+
+const removePokemon = (state, action) => {
+    return updateObject(state, {
+        pokemons: action.pokemons
+    })
 }
 
 const reducer = (state = initialState, action) => {
-    switch(action.type) {
-        case actionTypes.ADD: 
-            return {
-                ...state, 
-                pokemons: ['charmander']
-            }
-        case actionTypes.REMOVE: 
-            return {
-                ...state,
-                pokemons: []            
-            }
-        default:
-            return state;
+    switch (action.type) {
+        case actionTypes.ADD: return addPokemon(state, action);
+        case actionTypes.REMOVE: return removePokemon(state, action);
+        default: return state;
     }
 }
 

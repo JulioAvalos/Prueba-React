@@ -2,7 +2,11 @@ export {
     goToPrevPage,
     goToNextPage,
     initPokemons,
+    onSelectPokemon,
     fetchPokemonDetails
 } from './pokemons';
 
-export { } from './favorites';
+export {
+    onAddFavoritePokemon,
+    onRemoveFavoritePokemon
+} from './favorites';

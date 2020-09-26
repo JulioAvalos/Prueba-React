@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import PokemonList from './PokemonList';
 import Pagination from '../UI/Pagination';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import * as actionCreators from '../../store/actions/pokemons';
+import { Typography } from '@material-ui/core';
+
+import * as actionCreators from '../../store/actions';
 
 class Pokemons extends Component {
 
@@ -40,7 +43,27 @@ class Pokemons extends Component {
         );
     }
 
+
     render () {
+
+        if(this.props.pokemon) return (
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+                spacing={2}
+            >
+                <Grid item>
+                    <Typography variant="h5">
+                        Cargando... 
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <CircularProgress color="secondary" style={{width: '100px', height: '100px'}}/>
+                </Grid>
+            </Grid>
+        )
+
         return (
             <React.Fragment>
                 <Pagination/>
