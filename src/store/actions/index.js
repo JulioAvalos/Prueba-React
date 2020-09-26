@@ -7,6 +7,7 @@ export {
 } from './pokemons';
 
 export {
+    onFetchFavoritePokemons,
     onAddFavoritePokemon,
     onRemoveFavoritePokemon
 } from './favorites';

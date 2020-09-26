@@ -30,7 +30,6 @@ const FavoritesList = (props) => {
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-
     return (
         <Grid
             container 

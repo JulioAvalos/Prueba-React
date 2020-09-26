@@ -1,5 +1,21 @@
 import * as actionTypes from './actionTypes';
 
+export const fetchFavorites = (favoritePokemons) => {
+    return {
+        type: actionTypes.FETCH_FAVORITE_POKEMONS,
+        pokemons: favoritePokemons
+    };
+};
+
+export const onFetchFavoritePokemons = () => {
+    return dispatch => {
+        const favoritePokemons = localStorage.getItem('favorites') 
+                ? JSON.parse(localStorage.getItem('favorites')) 
+                : [];
+        dispatch(fetchFavorites(favoritePokemons));
+    };
+};
+
 export const onAddFavoritePokemon = (pokemon) => {
     let favorites = JSON.parse(localStorage.getItem('favorites'));
 
@@ -17,10 +33,10 @@ export const onAddFavoritePokemon = (pokemon) => {
     }
 
     return {
-        type: actionTypes.ADD,
+        type: actionTypes.ADD_FAVORITE_POKEMON,
         pokemons: favorites
-    }
-}
+    };
+};
 
 export const onRemoveFavoritePokemon = (pokemon) => {
     let favorites = JSON.parse(localStorage.getItem('favorites'));
@@ -30,8 +46,8 @@ export const onRemoveFavoritePokemon = (pokemon) => {
     localStorage.setItem('favorites', JSON.stringify(newFavorites));
 
     return {
-        type: actionTypes.REMOVE,
+        type: actionTypes.REMOVE_FAVORITE_POKEMON,
         pokemons: newFavorites
-    }
+    };
 
-}
+};

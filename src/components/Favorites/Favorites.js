@@ -9,17 +9,21 @@ import * as actionCreators from '../../store/actions';
 
 class Favorites extends Component {
 
+    componentDidMount () {
+        this.props.onInitFavorites();
+    }
+
     render () {
         return (
             <React.Fragment>
-                <Grid container justify="center" alignItem="center">
+                <Grid container justify="center" alignItems="center">
                     <Grid item>
                         <Typography variant="h4">Pokemon Favoritos</Typography>
                     </Grid>
                 </Grid>
                 <FavoriteList 
-                    onRemove={this.props.onRemovePokemon} 
                     favorites={this.props.favorites}
+                    onRemove={this.props.onRemovePokemon} 
                 />
             </React.Fragment>
         );
@@ -35,6 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onInitFavorites: () => dispatch(actionCreators.onFetchFavoritePokemons()),
         onRemovePokemon: (pokemon) => dispatch(actionCreators.onRemoveFavoritePokemon(pokemon)),
     };
 };
