@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Pokemons from './components/Pokemons/Pokemons';
-import Pokemon from './components/Pokemons/Pokemon';
-import Favorites from './components/Favorites/Favorites';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const App = () => {
+const Pokemon = React.lazy(()=> import('./components/Pokemons/Pokemon'));
+const Favorites = React.lazy(()=> import('./components/Favorites/Favorites'));
+
+const App = (props) => {
   return (
     <Switch>
-      <Route path="/favorites" exact component={Favorites}/>
-      <Route path="/detail/:id" exact component={Pokemon}/>
+      <Route 
+        path="/favorites" 
+        exact 
+        render={(props)=> (
+          <Suspense fallback={<CircularProgress />}>
+            <Favorites {...props}/>
+          </Suspense>
+        )}
+      />
+      <Route 
+        path="/detail/:id" 
+        exact 
+        render={(props) => (
+          <Suspense fallback={<CircularProgress />}>
+            <Pokemon {...props}/>
+          </Suspense>
+        )}
+      />
       <Route path="/" exact component={Pokemons}/>
       <Redirect to="/" />
     </Switch>

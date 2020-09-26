@@ -183,8 +183,8 @@ class Pokemon extends Component {
                             </Typography>
                             <Grid container justify="center" alignItems="center">
                                 <Grid item>
-                                {this.state.loadingImage 
-                                    ? <CircularProgress /> : 
+                                {this.props.pokemon.name 
+                                    &&
                                     <Avatar 
                                         className={classes.large}
                                         alt={this.props.pokemon.name}
