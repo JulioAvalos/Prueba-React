@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -13,9 +11,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Avatar from '@material-ui/core/Avatar';
 
-import * as actionCreators from '../../store/actions';
-
-const useStyles = theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
@@ -27,96 +23,72 @@ const useStyles = theme => ({
     large: {
         width: theme.spacing(8),
         height: theme.spacing(8)
-    },
-});
-
-class Favorites extends Component {
-
-    state = {
-        open: false
-    };
-
-    handleClose = () => {
-        this.setState({open: false});
-    };
-
-
-    render() {
-        const { classes } = this.props;
-
-        return (
-            <Grid
-                container 
-                spacing={3}
-            >   
-                {this.props.favorites.map(pokemon => (
-                    <Grid 
-                        item 
-                        lg={2}
-                        md={3}
-                        sm={4}
-                        xs={6}
-                        key={pokemon.name}
-                    >
-                        <Paper className={classes.paper}>
-                            <Grid container justify="flex-end">
-                                <IconButton color="secondary" onClick={()=>{
-                                        this.props.onRemovePokemon(pokemon);
-                                        this.setState({open: true});
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faTimes} />
-                                </IconButton>
-                            </Grid>
-                            <Grid container justify="center" alignItems="center"> 
-                                <Grid item>
-                                    <Avatar 
-                                        className={classes.large}
-                                        src={pokemon.img}
-                                        alt={pokemon.name}
-                                    / >
-                                </Grid>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="body1">{pokemon.name}</Typography>
-                            </Grid>
-                        </Paper>
-                    </Grid>
-                ))}
-                <Snackbar 
-                    open={this.state.open} 
-                    autoHideDuration={4000}
-                    anchorOrigin={{vertical: 'top', horizontal: 'center'}}
-                    message="Se ha quitado de favoritos!"
-                    onClose={() => this.handleClose()}
-                    action={
-                        <Button 
-                            onClick={()=>this.handleClose()} 
-                            style={{color: '#FFF'}}
-                        >
-                            Cerrar
-                        </Button>
-                    }
-                />
-            </Grid>
-
-        );
     }
+}));
+
+const FavoritesList = (props) => {
+
+    const classes = useStyles();
+    const [open, setOpen] = useState(false);
+
+    return (
+        <Grid
+            container 
+            spacing={3}
+        >   
+            {props.favorites.map(pokemon => (
+                <Grid 
+                    item 
+                    lg={2}
+                    md={3}
+                    sm={4}
+                    xs={6}
+                    key={pokemon.name}
+                >
+                    <Paper className={classes.paper}>
+                        <Grid container justify="flex-end">
+                            <IconButton color="secondary" onClick={()=>{
+                                    props.onRemovePokemon(pokemon);
+                                    setOpen(false);
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faTimes} />
+                            </IconButton>
+                        </Grid>
+                        <Grid container justify="center" alignItems="center"> 
+                            <Grid item>
+                                <Avatar 
+                                    className={classes.large}
+                                    src={pokemon.img}
+                                    alt={pokemon.name}
+                                / >
+                            </Grid>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="body1">{pokemon.name}</Typography>
+                        </Grid>
+                    </Paper>
+                </Grid>
+            ))}
+            <Snackbar 
+                open={open} 
+                autoHideDuration={4000}
+                anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+                message="Se ha quitado de favoritos!"
+                onClose={() => setOpen(false)}
+                action={
+                    <Button 
+                        onClick={() => setOpen(false)} 
+                        style={{color: '#FFF'}}
+                    >
+                        Cerrar
+                    </Button>
+                }
+            />
+        </Grid>
+
+    );
 
 }
 
-const mapStateToProps = state => {
-    return {
-        favorites: state.fav.pokemons
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onRemovePokemon: (pokemon) => dispatch(actionCreators.onRemoveFavoritePokemon(pokemon)),
-    };
-};
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Favorites));
+export default FavoritesList;
